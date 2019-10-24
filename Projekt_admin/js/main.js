@@ -62,6 +62,7 @@ function addProject(e) {
           Accept: "application/json",
           "Content-type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
           title: title,
           url: url,

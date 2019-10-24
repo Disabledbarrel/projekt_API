@@ -8,6 +8,15 @@
     include_once '../../config/Database.php';
     include_once '../../models/Projects.php';
 
+    // Kontrollera inloggning
+    session_start();
+    if(!isset($_SESSION['email'])) {
+        echo json_encode(
+            array('message' => 'Access denied')
+        );
+        exit();
+    }
+
     // Instansering av Databas och anslutning
     $database = new Database();
     $db = $database->connect();
