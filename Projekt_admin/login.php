@@ -1,0 +1,41 @@
+<?php
+/*Webbutveckling III DT173G
+Elin Larsson HT-19
+*/
+$page_title = "Logga in";
+require_once "includes/header.php";
+
+if(isset($_POST['email'])) {
+    $email = sanitizeString($_POST['email']);
+    $password = sanitizeString($_POST['password']);
+
+    $users = new User();
+    if($users->loginUser($email, $password)) {
+        header("Location: index.php");
+        $_SESSION['email'] = $email;
+    } else {
+        $message = "<p class='error'>Felaktigt användarnamn eller lösenord!</p>";
+    }
+
+}
+?>
+<!--Sektion A-->
+<section id="section-a" class="grid">
+    <div class="banner">
+        <h2>Logga in</h2>
+        <form action ="login.php" method="post">
+            E-post:<br>
+            <input type="email" name="email"><br>
+            Lösenord:<br>
+            <input type="password" name="password" size="20" required><br>
+            <input type="submit" value="Logga in">
+        </form>
+        <div>
+            <?php
+            if(isset($message)) { echo $message; }
+            ?>
+        </div>
+    </div>
+
+</section>
+<?php include("includes/footer.php"); ?>
