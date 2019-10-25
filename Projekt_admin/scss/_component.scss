@@ -13,6 +13,7 @@ body {
 header {
   background: $header-color;
   color: setTxtColor($header-color);
+  padding-bottom: 30px;
   h1 {
     font-family: $head-font;
     font-size: 3em;
@@ -47,6 +48,7 @@ nav.mainnav {
 
 #login {
   color: setTxtColor($header-color);
+  padding: 1rem;
   &:hover {
     text-decoration: underline;
   }
@@ -105,8 +107,30 @@ nav.mainnav {
     @include phone {
       width: 100%;
     }
+    .update,
+    .delete {
+      border: none;
+      padding: 5px;
+      font-family: inherit;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .update {
+      background: rgb(42, 133, 42);
+      &:hover {
+        background: lighten(rgb(42, 133, 42), 20);
+      }
+    }
+    .delete {
+      background: rgb(167, 15, 15);
+      &:hover {
+        background: lighten(rgb(167, 15, 15), 20);
+      }
+    }
   }
-  input[type="text"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -114,6 +138,19 @@ nav.mainnav {
     border: 1px solid $bg-color;
     border-radius: 3px;
     box-sizing: border-box;
+  }
+  #portfolio_list {
+    margin: auto auto;
+    grid-column: 1/5;
+    ul {
+      list-style: circle;
+      li {
+        text-align: left;
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 #section-b {

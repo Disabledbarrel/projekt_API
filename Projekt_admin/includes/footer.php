@@ -2,7 +2,7 @@
     </div>
     <!-- Slut container-->
 
-    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
   </body>
 </html>
 

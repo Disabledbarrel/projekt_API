@@ -21,14 +21,14 @@ if(isset($_POST['email'])) {
 ?>
 <!--Sektion A-->
 <section id="section-a" class="grid">
-    <div class="banner">
+    <div id="myForm">
         <h2>Logga in</h2>
-        <form action ="login.php" method="post">
+        <form action ="login.php" method="post" class="form-container">
             E-post:<br>
             <input type="email" name="email"><br>
             Lösenord:<br>
             <input type="password" name="password" size="20" required><br>
-            <input type="submit" value="Logga in">
+            <input type="submit" class="btn" value="Logga in">
         </form>
         <div>
             <?php

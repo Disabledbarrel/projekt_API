@@ -11,10 +11,12 @@ if(!isset($_SESSION['email'])) {
 ?>
 
   <section id="section-a">
-    <h2>Välj tabell att administrera:</h2>
-    <div>
+    <h2>Välj tabell att administrera</h2>
+    <div id="portfolio_list">
       <ul>
         <li><a href="projects.php">Projekt</a></li>
+        <li><a href="#">Utbildning</a></li>
+        <li><a href="#">Arbeten</a></li>
       </ul>
     </div>
   </section>

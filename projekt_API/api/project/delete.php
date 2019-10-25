@@ -13,7 +13,7 @@
     $db = $database->connect();
 
     // Instansering av kurs-klass
-    $course = new Project($db);
+    $project = new Project($db);
 
     // Hämta rådata
     $data = json_decode(file_get_contents("php://input"));
