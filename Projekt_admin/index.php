@@ -11,7 +11,7 @@ if(!isset($_SESSION['email'])) {
 ?>
 
   <section id="section-a">
-    <h2>Välj tabell att administrera</h2>
+    <h2>Välj tabell att administrera:</h2>
     <div>
       <ul>
         <li><a href="projects.php">Projekt</a></li>

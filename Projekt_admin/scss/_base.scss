@@ -1,0 +1,72 @@
+/* Nollställer marginaler och paddings*/
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Generell styling*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Mixins Media Queries
+@mixin phone {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: 1300px) {
+    @content;
+  }
+}
+
+// Variabler
+$bg-color: #ebebe3;
+$header-color: #008080;
+$sectiona-color: #cacac3;
+$sectionb-color: #333;
+
+$main-font: "Cutive Mono", Courier, monospace;
+$head-font: "Amatic SC", cursive;
+
+%section-styling {
+  padding: 0 10px 20px 10px;
+  h2 {
+    font-size: 2em;
+  }
+}
+
+$container: 1300px;
+
+%message-shared {
+  font-size: 1.2em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+// Functions
+@function setTxtColor($bg-color) {
+  @if (lightness($bg-color) > 50) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}

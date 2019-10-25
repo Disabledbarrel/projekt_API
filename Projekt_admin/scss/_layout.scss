@@ -1,0 +1,62 @@
+#container {
+    @include desktop {
+        max-width: $container;
+        margin: auto;
+        padding: 1em;
+        display: grid;
+        grid-template-columns: 1fr repeat(2, minmax(auto, 25em)) 1fr;
+    }
+}
+
+header, main {
+    @include desktop {
+        grid-column: 1/5;
+    } 
+}
+
+#section-a {
+    @include desktop {
+        grid-column: 1/5;
+        display: grid;
+        grid-template-columns: 1fr repeat(2, minmax(auto, 25em)) 1fr;
+    }
+    h2 {
+        @include desktop {
+            grid-column: 1/5;
+        }
+    }
+    #myForm {
+        @include desktop {
+            grid-column: 1/5;
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 1fr repeat(2, minmax(auto, 25em)) 1fr;
+            h3 {
+                grid-column: 1/5;
+            }
+            form {
+                grid-column: 1/5;
+            }
+        }
+    }
+}
+
+.img-wrap {
+    @include desktop {
+        grid-column: 2/4;
+    }
+}
+
+.content-wrap {
+    @include desktop {
+        grid-column: 1/5;
+        grid-row: 2;
+    }
+}
+
+#output {
+    @include desktop {
+        grid-column: 1/5;
+        grid-row: 1;
+    }
+}

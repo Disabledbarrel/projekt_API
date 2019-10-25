@@ -1,0 +1,132 @@
+// Body
+body {
+  background: $bg-color;
+  font-family: $main-font;
+  @extend %message-shared;
+}
+
+.img-wrap {
+  margin: auto auto;
+}
+
+// Header
+header {
+  background: $header-color;
+  color: setTxtColor($header-color);
+  h1 {
+    font-family: $head-font;
+    font-size: 3em;
+  }
+  @include phone {
+    h1 {
+      font-size: 2em;
+    }
+  }
+}
+
+// Navigation
+nav.mainnav {
+  ul {
+    padding-bottom: 10px;
+  }
+  li {
+    @include desktop;
+    @include tablet {
+      display: inline;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    padding-right: 20px;
+    color: $bg-color;
+    &:hover {
+      color: darken($bg-color, 20);
+    }
+  }
+}
+
+#login {
+  color: setTxtColor($header-color);
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Sektioner
+#section-a {
+  background: $sectiona-color;
+  #myForm {
+    #table {
+      margin: auto auto;
+      width: 500px;
+      @include phone {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  .btn {
+    margin: 10px;
+    padding: 10px;
+    background: $sectionb-color;
+    color: setTxtColor($sectionb-color);
+    font-family: inherit;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    &:hover {
+      background: lighten($sectionb-color, 10%);
+      cursor: pointer;
+    }
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+  }
+  #output {
+    margin-bottom: 15px;
+  }
+  .courses {
+    font-size: 0.8em;
+    margin: auto auto;
+    width: 1100px;
+    th,
+    td {
+      text-align: left;
+      padding: 5px;
+    }
+    th {
+      background: $sectionb-color;
+      color: setTxtColor($sectionb-color);
+    }
+    td {
+      background: $bg-color;
+      color: setTxtColor($bg-color);
+    }
+    @include phone {
+      width: 100%;
+    }
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid $bg-color;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+}
+#section-b {
+  @extend #section-a;
+  background: $sectionb-color;
+  color: setTxtColor($sectionb-color);
+}
+.content-wrap {
+  @extend %section-styling;
+  @include phone {
+    p {
+      font-size: 1.3em;
+      padding-top: 10px;
+    }
+  }
+}
