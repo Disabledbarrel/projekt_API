@@ -34,8 +34,14 @@ include("includes/functions.php");
       <header id="header">
         <div id="welcome">
           <h1>Administrering</h1>
-          <a href='index.php' id='login'>Startsida</a>
-          <a href='logout.php' id='login'>Logga ut</a>
+          <?php 
+                if(!isset($_SESSION['email'])) {
+                    echo "<a href='index.php' id='login'>Startsida</a>";
+                } else {
+                  echo "<a href='index.php' id='login'>Startsida</a>";
+                    echo "<a href='logout.php' id='login'>Logga ut</a>";
+                }
+                ?>
         </div>
       </header>
       <!-- Slut Headerområde-->

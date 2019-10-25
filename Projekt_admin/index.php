@@ -21,5 +21,10 @@ if(!isset($_SESSION['email'])) {
     </div>
   </section>
 
-<?php include("includes/footer.php"); ?>
+  </body>
+</html>
+
+<!-- /*Webbutveckling III DT173G
+Elin Larsson HT-19
+*/-->
         
