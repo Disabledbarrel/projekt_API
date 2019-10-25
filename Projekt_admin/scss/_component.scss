@@ -116,15 +116,15 @@ nav.mainnav {
       cursor: pointer;
     }
     .update {
-      background: rgb(42, 133, 42);
+      background: rgb(70, 155, 105);
       &:hover {
-        background: lighten(rgb(42, 133, 42), 20);
+        background: lighten(rgb(70, 155, 105), 20);
       }
     }
     .delete {
-      background: rgb(167, 15, 15);
+      background: rgb(155, 21, 44);
       &:hover {
-        background: lighten(rgb(167, 15, 15), 20);
+        background: lighten(rgb(155, 21, 44), 20);
       }
     }
   }
@@ -149,6 +149,38 @@ nav.mainnav {
         a:hover {
           text-decoration: underline;
         }
+      }
+    }
+  }
+  #updateForm {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 2px solid $sectionb-color;
+    width: 500px;
+    background: $bg-color;
+    z-index: 9;
+    grid-column: 1/5;
+    padding: 10px;
+    #table2 {
+      margin: auto auto;
+      width: 500px;
+      .delete {
+        margin: 10px;
+        padding: 10px;
+        background: rgb(155, 21, 44);
+        font-family: inherit;
+        border: none;
+        border-radius: 3px;
+        text-transform: uppercase;
+        &:hover {
+          background: lighten(rgb(155, 21, 44), 10%);
+          cursor: pointer;
+        }
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
       }
     }
   }

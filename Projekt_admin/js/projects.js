@@ -16,6 +16,7 @@ const deleteUrlProject =
   "http://localhost/projekt_webbutvecklingIII/projekt_API/api/project/delete.php";
 
 // CRUD Projects
+// Read
 function getProject() {
   fetch(getUrlProject) // Hämtar med get
     .then(msg => msg.json())
@@ -32,13 +33,13 @@ function getProject() {
                         <h4>Webblänk:</h4>
                     </th>
                     <th>
-                        <h4>Beskrivning</h4>
+                        <h4>Beskrivning:</h4>
                     </th>
                     <th>
-                        
+                    <h4>Uppdatera</h4>
                     </th>
                     <th>
-                        
+                    <h4>Radera</h4>
                     </th>
                 </tr>
                 <tr>
@@ -52,7 +53,7 @@ function getProject() {
                         ${project.description}
                     </td>
                     <td>
-                    <button class="update" onclick="uppdateProject(${project.id})">Uppdatera</button>
+                    <button class="update" onclick="openForm(${project.id})">Uppdatera</button>
                     </td>
                     <td>
                     <button class="delete" onclick="deleteProject(${project.id})">Radera</button>
@@ -69,7 +70,7 @@ function getProject() {
     })
     .catch(err => console.log(err));
 }
-
+//Create
 function addProject(e) {
   // Lägga till projekt med POST
   e.preventDefault();
@@ -104,6 +105,7 @@ function addProject(e) {
   }
 }
 
+// Delete
 function deleteProject(id) {
   // Radera projekt
   fetch(deleteUrlProject, {
@@ -117,4 +119,48 @@ function deleteProject(id) {
       getProject(); // Läs in projekt på nytt
     })
     .catch(error => console.log(error));
+}
+
+// Update
+function updateProject(id) {
+  console.log("bajsröv", id);
+
+  let title = document.getElementById("edit_title").value;
+  let url = document.getElementById("edit_url").value;
+  let description = document.getElementById("edit_description").value;
+  let image = document.getElementById("edit_image").value;
+
+  if (title != "" && url != "" && description != "" && image != "") {
+    let json = JSON.stringify({
+      id: id,
+      title: title,
+      url: url,
+      description: description,
+      image: image
+    });
+
+    fetch(updateUrlProject, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      },
+      body: json
+    }).then(msg => {
+      closeForm();
+    });
+  }
+}
+
+// Öppna formulär
+function openForm(id) {
+  document.getElementById("updateForm").style.display = "block";
+  document.getElementById("edit").onclick = function() {
+    updateProject(id);
+  };
+}
+
+// Dölj formulär
+function closeForm() {
+  document.getElementById("updateForm").style.display = "none";
 }

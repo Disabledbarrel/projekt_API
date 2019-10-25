@@ -59,7 +59,71 @@ if(!isset($_SESSION['email'])) {
               </table>
             </form>
           </div>
+
+          <!-- Uppdatera -->
+          <div id="updateForm" class="form-popup">
+            <h2>Uppdatera projekt:</h2>
+            <form id="updateProject">
+              <table id="table2">
+                <tr>
+                  <td>
+                    <h4>Titel</h4>
+                    <input id="edit_title" type="text" name="title" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4>Webblänk</h4>
+                    <input id="edit_url" type="text" name="url" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4>Beskrivning</h4>
+                    <input
+                      id="edit_description"
+                      type="text"
+                      name="description"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4>Bildlänk</h4>
+                    <input id="edit_image" type="text" name="image" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                      type="submit"
+                      id="edit"
+                      name="submit"
+                      class="btn"
+                      value="Uppdatera projekt"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                <td>
+                  <input type="submit" class="delete" onclick="closeForm()" value="Ångra"/>
+                  <td>
+                </tr>
+              </table>
+            </form>
+          </div>
         </section>
 
-<?php include("includes/footer.php"); ?>
+        </main>
+    </div>
+    <!-- Slut container-->
+
+    <script src="js/projects.js"></script>
+  </body>
+</html>
+
+<!-- /*Webbutveckling III DT173G
+Elin Larsson HT-19
+*/-->
         
