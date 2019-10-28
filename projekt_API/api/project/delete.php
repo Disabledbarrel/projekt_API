@@ -8,11 +8,20 @@
     include_once '../../config/Database.php';
     include_once '../../models/Projects.php';
 
+     // Kontrollera inloggning
+     session_start();
+     if(!isset($_SESSION['email'])) {
+         echo json_encode(
+             array('message' => 'Access denied')
+         );
+         exit();
+     }
+
     // Instansering av Databas och anslutning
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av kurs-klass
+    // Instansering av projekt-klass
     $project = new Project($db);
 
     // Hämta rådata
@@ -21,9 +30,9 @@
     // Set Id för att uppdatera
     $project->id = $data->id;
 
-    // Radera course
+    // Radera projekt
     if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-        // The request is using the POST method
+        // Kontrollerar att deletemetoden används
         if($project->delete()) {
             echo json_encode(
                 array('message' => 'Kurs raderad')

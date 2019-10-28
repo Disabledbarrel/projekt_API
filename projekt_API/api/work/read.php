@@ -4,47 +4,48 @@
     header('Content-type: application/json');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Projects.php';
+    include_once '../../models/Work.php';
 
     // Instansering av Databas och anslutning
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av projekt-klass
-    $project = new Project($db);
+    // Instansering av arbete-klass
+    $work = new Work($db);
 
-    // Project query
-    $result = $project->read();
+    // Work query
+    $result = $work->read();
     // Räkna rader
     $num = $result->rowCount();
 
-    // Kolla om projekt finns
+    // Kolla om arbeten finns
     if($num > 0) {
         // Skapa array
-        $projects_arr = array();
-        $projects_arr['data'] = array();
+        $works_arr = array();
+        $works_arr['data'] = array();
 
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
 
-            $project_item = array (
+            $work_item = array (
                 'id' => $id,
+                'workplace' => $workplace,
                 'title' => $title,
-                'url' => $url,
                 'description' => $description,
-                'image' => $image
+                'startdate' => $startdate,
+                'stopdate' => $stopdate
             );
 
             // Push to data
-            array_push($projects_arr['data'], $project_item);
+            array_push($works_arr['data'], $work_item);
         }
 
         // Omvandla till JSON
-        echo json_encode($projects_arr);
+        echo json_encode($works_arr);
 
     } else {
-        // Inga projekt
+        // Inga arbeten
         echo json_encode(
-            array('message' => 'Inga projekt hittade')
+            array('message' => 'Inga arbeten hittade')
         );
     }

@@ -2,11 +2,11 @@
     // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-type: application/json');
-    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Methods: PUT');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Projects.php';
+    include_once '../../models/Education.php';
 
     // Kontrollera inloggning
     session_start();
@@ -21,32 +21,30 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av projekt-klass
-    $project = new Project($db);
+    // Instansering av utbildnings-klass
+    $education = new Education($db);
 
     // Hämta rådata
     $data = json_decode(file_get_contents("php://input"));
 
-    $project->title = $data->title;
-    $project->url = $data->url;
-    $project->description = $data->description;
-    $project->image = $data->image;
+    // Set Id för att uppdatera
+    $education->id = $data->id;
 
-    // Create project
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Kontrollerar att postmetoden används
-        if($project->create()) {
+    $education->course = $data->course;
+    $education->school = $data->school;
+    $education->startdate = $data->startdate;
+    $education->stopdate = $data->stopdate;
+
+    // Uppdatera education
+    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+        // Kontrollerar att putmetoden används
+        if($education->update()) {
             echo json_encode(
-                array('message' => 'Projekt tillagt')
+                array('message' => 'Utbildning uppdaterad')
             );
         } else {
             echo json_encode(
-                array('message' => 'Projekt kunde inte läggas till')
+                array('message' => 'Utbildning kunde inte uppdateras')
             );
         }
-    } else {
-        echo json_encode(
-            array('message' => 'Projekt kunde inte läggas till')
-        );
     }
-    

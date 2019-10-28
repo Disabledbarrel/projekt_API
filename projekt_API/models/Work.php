@@ -1,22 +1,23 @@
 <?php
-    class Project {
+    class Work {
         // Database Properties
        private $conn;
-       private $table = 'projects';
+       private $table = 'work';
 
-        // Project Properties
+        // Work Properties
         public $id;
+        public $workplace;
         public $title;
-        public $url;
         public $description;
-        public $image;
+        public $startdate;
+        public $stopdate;
 
         // Constructor med Databas
         public function __construct($db) {
             $this->conn = $db;
         }
 
-        // Get projects
+        // Get work
         public function read() {
             // Skapar query
             $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id ASC;';
@@ -30,30 +31,33 @@
             return $stmt;
         }
 
-        // Create project
+        // Create work
         public function create() {
             // Skapar query
             $query = 'INSERT INTO ' . $this->table . '
             SET 
+                workplace = :workplace,
                 title = :title,
-                url = :url,
                 description = :description,
-                image = :image';
+                startdate = :startdate,
+                stopdate = :stopdate';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
 
             // Säkerhetsfunktioner
+            $this->workplace = htmlspecialchars(strip_tags($this->workplace));
             $this->title = htmlspecialchars(strip_tags($this->title));
-            $this->url = htmlspecialchars(strip_tags($this->url));
             $this->description = htmlspecialchars(strip_tags($this->description));
-            $this->image = htmlspecialchars(strip_tags($this->image));
+            $this->startdate = htmlspecialchars(strip_tags($this->startdate));
+            $this->stopdate = htmlspecialchars(strip_tags($this->stopdate));
 
             // Associera data
+            $stmt->bindParam(':workplace', $this->workplace);
             $stmt->bindParam(':title', $this->title);
-            $stmt->bindParam(':url', $this->url);
             $stmt->bindParam(':description', $this->description);
-            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':startdate', $this->startdate);
+            $stmt->bindParam(':stopdate', $this->stopdate);
 
             // Execute query
             if($stmt->execute()) {
@@ -65,15 +69,16 @@
             return false;
         }
 
-        // Update project
+        // Update work
         public function update() {
             // Skapar query
             $query = 'UPDATE ' . $this->table . '
             SET 
+                workplace = :workplace,
                 title = :title,
-                url = :url,
                 description = :description,
-                image = :image
+                startdate = :startdate,
+                stopdate = :stopdate
             WHERE
                 id = :id';
 
@@ -81,17 +86,19 @@
             $stmt = $this->conn->prepare($query);
 
             // Säkerhetsfunktioner
+            $this->workplace = htmlspecialchars(strip_tags($this->workplace));
             $this->title = htmlspecialchars(strip_tags($this->title));
-            $this->url = htmlspecialchars(strip_tags($this->url));
             $this->description = htmlspecialchars(strip_tags($this->description));
-            $this->image = htmlspecialchars(strip_tags($this->image));
+            $this->startdate = htmlspecialchars(strip_tags($this->startdate));
+            $this->stopdate = htmlspecialchars(strip_tags($this->stopdate));
             $this->id = htmlspecialchars(strip_tags($this->id));
 
             // Associera data
+            $stmt->bindParam(':workplace', $this->workplace);
             $stmt->bindParam(':title', $this->title);
-            $stmt->bindParam(':url', $this->url);
             $stmt->bindParam(':description', $this->description);
-            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':startdate', $this->startdate);
+            $stmt->bindParam(':stopdate', $this->stopdate);
             $stmt->bindParam(':id', $this->id);
 
             // Execute query
@@ -104,7 +111,7 @@
             return false;
         }
 
-        // Ta bort project
+        // Ta bort arbete
         public function delete() {
             // Skapar query
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';

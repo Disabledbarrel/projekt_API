@@ -1,22 +1,22 @@
 <?php
-    class Project {
+    class Education {
         // Database Properties
        private $conn;
-       private $table = 'projects';
+       private $table = 'education';
 
-        // Project Properties
+        // Education Properties
         public $id;
-        public $title;
-        public $url;
-        public $description;
-        public $image;
+        public $course;
+        public $school;
+        public $startdate;
+        public $stopdate;
 
         // Constructor med Databas
         public function __construct($db) {
             $this->conn = $db;
         }
 
-        // Get projects
+        // Get education
         public function read() {
             // Skapar query
             $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id ASC;';
@@ -30,30 +30,30 @@
             return $stmt;
         }
 
-        // Create project
+        // Create education
         public function create() {
             // Skapar query
             $query = 'INSERT INTO ' . $this->table . '
             SET 
-                title = :title,
-                url = :url,
-                description = :description,
-                image = :image';
+                course = :course,
+                school = :school,
+                startdate = :startdate,
+                stopdate = :stopdate';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
 
             // Säkerhetsfunktioner
-            $this->title = htmlspecialchars(strip_tags($this->title));
-            $this->url = htmlspecialchars(strip_tags($this->url));
-            $this->description = htmlspecialchars(strip_tags($this->description));
-            $this->image = htmlspecialchars(strip_tags($this->image));
+            $this->course = htmlspecialchars(strip_tags($this->course));
+            $this->school = htmlspecialchars(strip_tags($this->school));
+            $this->startdate = htmlspecialchars(strip_tags($this->startdate));
+            $this->stopdate = htmlspecialchars(strip_tags($this->stopdate));
 
             // Associera data
-            $stmt->bindParam(':title', $this->title);
-            $stmt->bindParam(':url', $this->url);
-            $stmt->bindParam(':description', $this->description);
-            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':course', $this->course);
+            $stmt->bindParam(':school', $this->school);
+            $stmt->bindParam(':startdate', $this->startdate);
+            $stmt->bindParam(':stopdate', $this->stopdate);
 
             // Execute query
             if($stmt->execute()) {
@@ -65,15 +65,15 @@
             return false;
         }
 
-        // Update project
+        // Update education
         public function update() {
             // Skapar query
             $query = 'UPDATE ' . $this->table . '
             SET 
-                title = :title,
-                url = :url,
-                description = :description,
-                image = :image
+                course = :course,
+                school = :school,
+                startdate = :startdate,
+                stopdate = :stopdate
             WHERE
                 id = :id';
 
@@ -81,17 +81,17 @@
             $stmt = $this->conn->prepare($query);
 
             // Säkerhetsfunktioner
-            $this->title = htmlspecialchars(strip_tags($this->title));
-            $this->url = htmlspecialchars(strip_tags($this->url));
-            $this->description = htmlspecialchars(strip_tags($this->description));
-            $this->image = htmlspecialchars(strip_tags($this->image));
+            $this->course = htmlspecialchars(strip_tags($this->course));
+            $this->school = htmlspecialchars(strip_tags($this->school));
+            $this->startdate = htmlspecialchars(strip_tags($this->startdate));
+            $this->stopdate = htmlspecialchars(strip_tags($this->stopdate));
             $this->id = htmlspecialchars(strip_tags($this->id));
 
             // Associera data
-            $stmt->bindParam(':title', $this->title);
-            $stmt->bindParam(':url', $this->url);
-            $stmt->bindParam(':description', $this->description);
-            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':course', $this->course);
+            $stmt->bindParam(':school', $this->school);
+            $stmt->bindParam(':startdate', $this->startdate);
+            $stmt->bindParam(':stopdate', $this->stopdate);
             $stmt->bindParam(':id', $this->id);
 
             // Execute query
@@ -104,7 +104,7 @@
             return false;
         }
 
-        // Ta bort project
+        // Ta bort education
         public function delete() {
             // Skapar query
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';

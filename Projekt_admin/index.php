@@ -15,8 +15,8 @@ if(!isset($_SESSION['email'])) {
     <div id="portfolio_list">
       <ul>
         <li><a href="projects.php">Projekt</a></li>
-        <li><a href="#">Utbildning</a></li>
-        <li><a href="#">Arbeten</a></li>
+        <li><a href="education.php">Utbildning</a></li>
+        <li><a href="work.php">Arbeten</a></li>
       </ul>
     </div>
   </section>

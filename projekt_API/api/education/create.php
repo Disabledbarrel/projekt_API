@@ -6,7 +6,7 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Projects.php';
+    include_once '../../models/Education.php';
 
     // Kontrollera inloggning
     session_start();
@@ -21,32 +21,32 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av projekt-klass
-    $project = new Project($db);
+    // Instansering av utbildnings-klass
+    $education = new Education($db);
 
     // Hämta rådata
     $data = json_decode(file_get_contents("php://input"));
 
-    $project->title = $data->title;
-    $project->url = $data->url;
-    $project->description = $data->description;
-    $project->image = $data->image;
+    $education->course = $data->course;
+    $education->school = $data->school;
+    $education->startdate = $data->startdate;
+    $education->stopdate = $data->stopdate;
 
-    // Create project
+    // Create education
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Kontrollerar att postmetoden används
-        if($project->create()) {
+        if($education->create()) {
             echo json_encode(
-                array('message' => 'Projekt tillagt')
+                array('message' => 'Utbildning tillagt')
             );
         } else {
             echo json_encode(
-                array('message' => 'Projekt kunde inte läggas till')
+                array('message' => 'Utbildning kunde inte läggas till')
             );
         }
     } else {
         echo json_encode(
-            array('message' => 'Projekt kunde inte läggas till')
+            array('message' => 'Utbildning kunde inte läggas till')
         );
     }
     

@@ -6,7 +6,7 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Projects.php';
+    include_once '../../models/Work.php';
 
     // Kontrollera inloggning
     session_start();
@@ -21,32 +21,33 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av projekt-klass
-    $project = new Project($db);
+    // Instansering av arbete-klass
+    $work = new Work($db);
 
     // Hämta rådata
     $data = json_decode(file_get_contents("php://input"));
 
-    $project->title = $data->title;
-    $project->url = $data->url;
-    $project->description = $data->description;
-    $project->image = $data->image;
+    $work->workplace = $data->workplace;
+    $work->title = $data->title;
+    $work->description = $data->description;
+    $work->startdate = $data->startdate;
+    $work->stopdate = $data->stopdate;
 
-    // Create project
+    // Create work
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Kontrollerar att postmetoden används
-        if($project->create()) {
+        if($work->create()) {
             echo json_encode(
-                array('message' => 'Projekt tillagt')
+                array('message' => 'Arbete tillagt')
             );
         } else {
             echo json_encode(
-                array('message' => 'Projekt kunde inte läggas till')
+                array('message' => 'Arbete kunde inte läggas till')
             );
         }
     } else {
         echo json_encode(
-            array('message' => 'Projekt kunde inte läggas till')
+            array('message' => 'Arbete kunde inte läggas till')
         );
     }
     

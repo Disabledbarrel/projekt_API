@@ -2,11 +2,11 @@
     // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-type: application/json');
-    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Methods: DELETE');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Projects.php';
+    include_once '../../models/Work.php';
 
     // Kontrollera inloggning
     session_start();
@@ -21,32 +21,25 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instansering av projekt-klass
-    $project = new Project($db);
+    // Instansering av arbete-klass
+    $work = new Work($db);
 
     // Hämta rådata
     $data = json_decode(file_get_contents("php://input"));
 
-    $project->title = $data->title;
-    $project->url = $data->url;
-    $project->description = $data->description;
-    $project->image = $data->image;
+    // Set Id för att uppdatera
+    $work->id = $data->id;
 
-    // Create project
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Kontrollerar att postmetoden används
-        if($project->create()) {
+    // Radera arbete
+    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        // Kontrollerar att deletemetoden används
+        if($work->delete()) {
             echo json_encode(
-                array('message' => 'Projekt tillagt')
+                array('message' => 'Arbete raderad')
             );
         } else {
             echo json_encode(
-                array('message' => 'Projekt kunde inte läggas till')
+                array('message' => 'Arbete kunde inte raderas')
             );
         }
-    } else {
-        echo json_encode(
-            array('message' => 'Projekt kunde inte läggas till')
-        );
     }
-    
