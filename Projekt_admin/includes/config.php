@@ -14,7 +14,7 @@ spl_autoload_register(function ($class) {
     include "classes/" . $class . ".class.php";
 });
 
-// DB-settings localhost
+//DB-Settings studentserver
 define("DBHOST", "localhost");
 define("DBUSER", "portfolio");
 define("DBPASS", "password");

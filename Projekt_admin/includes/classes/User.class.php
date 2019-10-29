@@ -30,7 +30,7 @@ class User {
         $result = $this->db->query($sql);
         
         if($result) {
-            $_SESSION['email'] = $email;
+            $_SESSION['portfolio'] = $email;
                 return true;
             } else {
                 return false;

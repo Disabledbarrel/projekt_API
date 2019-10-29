@@ -35,7 +35,7 @@ include("includes/functions.php");
         <div id="welcome">
           <h1>Administrering</h1>
           <?php 
-                if(!isset($_SESSION['email'])) {
+                if(!isset($_SESSION['portfolio'])) {
                     echo "<a href='index.php' id='login'>Startsida</a>";
                 } else {
                   echo "<a href='index.php' id='login'>Startsida</a>";

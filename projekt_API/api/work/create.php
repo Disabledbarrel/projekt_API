@@ -10,7 +10,7 @@
 
     // Kontrollera inloggning
     session_start();
-    if(!isset($_SESSION['email'])) {
+    if(!isset($_SESSION['portfolio'])) {
         echo json_encode(
             array('message' => 'Access denied')
         );

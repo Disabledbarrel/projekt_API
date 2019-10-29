@@ -5,7 +5,7 @@ Elin Larsson HT-19
 $page_title = "Arbete";
 require_once "includes/header.php";
 
-if(!isset($_SESSION['email'])) {
+if(!isset($_SESSION['portfolio'])) {
   header("Location: login.php");
 }
 ?>

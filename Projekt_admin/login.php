@@ -12,7 +12,7 @@ if(isset($_POST['email'])) {
     $users = new User();
     if($users->loginUser($email, $password)) {
         header("Location: index.php");
-        $_SESSION['email'] = $email;
+        $_SESSION['portfolio'] = $email;
     } else {
         $message = "<p class='error'>Felaktigt användarnamn eller lösenord!</p>";
     }
