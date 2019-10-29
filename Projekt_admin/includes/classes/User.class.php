@@ -26,15 +26,20 @@ class User {
         $email = $this->db->real_escape_string($email);
         $password = $this->db->real_escape_string($password);
 
-        $sql ="SELECT password FROM users WHERE email='$email'";
+        $sql ="SELECT password FROM user WHERE email='$email'";
         $result = $this->db->query($sql);
-        
-        if($result) {
-            $_SESSION['portfolio'] = $email;
+    
+        if($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $storedpassword = $row['password'];
+            
+            if($storedpassword == $password) {
+                $_SESSION['portfolio'] = $email;
                 return true;
             } else {
                 return false;
             }
-    }
+        }
 
+    }
 }
