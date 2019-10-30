@@ -6,10 +6,11 @@ REST API med tillhörande admingränssnitt som möjliggör läsa ut, lägga till
 
 ## Beskrivning
 
-Webbtjänsten är skapad med PHP och OOP.
-Admingränsnittet är skapat med PHP och Sass som kompileras över ett Gulpramverk.
+Webbtjänsten är skapad med PHP och OOP. Webbtjänstens create-, update- och deletedelar är skyddade med sessionsvariabel.
 
 ### Admingränssnitt
+
+Admingränsnittet är skapat med PHP och Sass som kompileras över ett Gulpramverk. Gränsnittet konsumerar webbtjänstens samtliga delar och möjliggör att lägga till, uppdatera, radera och läsa poster ur databasen.
 
 Admingränssnittet finns publicerat på: http://studenter.miun.se/~ella1800/dt173g/projekt_api/admin/login.php
 
