@@ -7,7 +7,7 @@ REST API med tillhörande admingränssnitt som möjliggör läsa ut, lägga till
 ## Beskrivning
 
 Webbtjänsten är skapad med PHP och OOP.
-Amingränsnittet är skapat med PHP och Sass som kompileras över ett Gulpramverk.
+Admingränsnittet är skapat med PHP och Sass som kompileras över ett Gulpramverk.
 
 ### Admingränssnitt
 
