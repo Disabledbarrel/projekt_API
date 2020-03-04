@@ -19,7 +19,7 @@
         // Get projects
         public function read() {
             // Skapar query
-            $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id ASC;';
+            $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC;';
 
             // Prepare statement PDO
             $stmt = $this->conn->prepare($query);
